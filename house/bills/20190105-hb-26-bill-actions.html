@@ -1,0 +1,148 @@
+
+
+<!DOCTYPE html public"-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	Bill Actions
+</title>
+    <style> 
+        body 
+        {
+            background:white;
+            font-family:'Century Gothic',Arial, Helvetica, sans-serif;
+            -webkit-text-size-adjust: none !important;
+        }
+        
+        table
+        {
+            border: none;
+        }
+
+        #activitytable
+        {
+            position:absolute;
+            width:98%;
+            z-index: 0;
+        }
+
+        #actionTable thead tr
+        {
+            visibility:hidden;
+        }
+
+        /*#fixedTable tbody tr
+        {
+            visibility:hidden;
+        }*/
+
+        #fixedTable
+        {
+            position:fixed;
+            width:100%;
+            z-index:10000;
+            padding-right: 16px;
+        }
+        
+        td 
+        {
+            border:none;
+            border-left: 0px solid white !important;
+            border-bottom: 0px solid white !important;
+            background-color: rgba(170, 190, 197, 0.3); 
+            font-size: 9pt !important; 
+            padding: 2px 2px 2px 2px;
+        }
+        
+        tr
+        {
+            background-color: #DCDCDC;   
+        }
+
+        tbody tr:hover
+        {
+            background-color: rgba(92, 115, 115, 0.5) !important;
+        }
+        
+        th
+        {
+            border:none;
+            border-left: 0px solid white !important;
+            border-bottom: 0px solid white !important;   
+            background-color: rgba(255, 204, 102, 0.3);
+            font-size: 10pt !important; 
+            padding: 2px 2px 2px 2px;
+            font-weight: normal;
+        }
+
+        tr:nth-child(even) 
+        {
+            background-color: #F5F5F5;
+        }
+        
+        .billactions
+        {
+            text-align: left;   
+        }
+
+        #whitespace
+        {
+            top: 0px;
+            width: 100%;
+            height: 49px;
+            background-color: white;
+            position:fixed;
+            z-index: 100;
+        }
+        
+        #lblBillNumber
+        {
+            display: none;
+        }
+
+        #lblActions
+        {
+            font-size: small !important;
+        }
+    </style>
+    <style type="text/css" media="print">
+        #PrintFrame
+        {
+            display: none;
+        }
+
+        #lblBillNumber
+        {
+            display: block;
+        }
+
+        #actionTable thead tr
+        {
+            visibility: visible;
+        }
+
+        #fixedTable
+        {
+            display: none;
+        }
+
+        #whitespace
+        {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="./BillActions.aspx?bill=HB26" id="form1" style="margin-top: 28px">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE5NTA0NzU0NzIPFgIeE1ZhbGlkYXRlUmVxdWVzdE1vZGUCARYCAgMPZBYEAgEPDxYCHgRUZXh0Ba0IPGRpdj48dGFibGUgaWQ9ImZpeGVkVGFibGUiIGJvcmRlcj0xIHdpZHRoPSIxMDAlIj48dGhlYWQ+PHRyPjx0aCBzdHlsZT0idGV4dC1hbGlnbjpjZW50ZXI7IHdpZHRoOjIwJTsiPjxhIGhyZWY9IkJpbGxBY3Rpb25zLmFzcHg/YmlsbD1IQjI2JnllYXI9MjAxOSZjb2RlPVImc29ydERlc2M9dHJ1ZSIgc3R5bGU9ImNvbG9yOmJsYWNrOyI+PGI+RGF0ZTwvYj48L2E+PC90aD48dGggc3R5bGU9InRleHQtYWxpZ246Y2VudGVyOyB3aWR0aDoyMCU7Ij48Yj5Kcm4gUGc8L2I+PC90aD48dGggY29sc3Bhbj0iNCIgIHN0eWxlPSJ0ZXh0LWFsaWduOmNlbnRlcjsgd2lkdGg6NjAlOyI+PGI+QWN0aXZpdHkgRGVzY3JpcHRpb248L2I+PC90aD48L3RyPjwvdGhlYWQ+PHRib2R5PjwvdGJvZHk+PC90YWJsZT48L2Rpdj48ZGl2Pjx0YWJsZSBpZD0iYWN0aW9uVGFibGUiIGJvcmRlcj0xIHdpZHRoPSIxMDAlIj48dGhlYWQ+PHRyPjx0aCAgc3R5bGU9InRleHQtYWxpZ246Y2VudGVyOyB3aWR0aDoyMCU7Ij48YSBocmVmPSJCaWxsQWN0aW9ucy5hc3B4P2JpbGw9SEIyNiZ5ZWFyPTIwMTkmY29kZT1SJnNvcnREZXNjPXRydWUiIHN0eWxlPSJjb2xvcjpibGFjazsiPjxiPkRhdGU8L2I+PC9hPjwvdGg+PHRoIHN0eWxlPSJ0ZXh0LWFsaWduOmNlbnRlcjsgd2lkdGg6MjAlOyI+PGI+SnJuIFBnPC9iPjwvdGg+PHRoIGNvbHNwYW49IjQiIHN0eWxlPSJ0ZXh0LWFsaWduOmNlbnRlcjsgd2lkdGg6NjAlOyI+PGI+QWN0aXZpdHkgRGVzY3JpcHRpb248L2I+PC90aD48L3RyPjwvdGhlYWQ+PHRyPjx0ZD4xMi8wMy8yMDE4PC90ZD48dGQ+PC90ZD48dGQgY2xhc3M9ImJpbGxhY3Rpb25zIj5QcmVmaWxlZCAoSCkgPC90ZD48L3RyPjwvdGFibGU+PC9kaXY+PC9icj5UaGUgYWN0aXZpdHkgY2FuIGJlIHJlZmVyZW5jZWQgaW4gdGhlIEhvdXNlIG9yIFNlbmF0ZSBKb3VybmFsLiBUaGUgSlJOIFBHIGNvbHVtbiBpbmRpY2F0ZXMgdGhlIEgtSG91c2Ugb3IgUy1TZW5hdGUgam91cm5hbCBwcmludGVkIGZvciB0aGF0IGFjdGl2aXR5IGRhdGUgYW5kIHRoZSBwYWdlIG51bWJlciBmb3IgdGhlIGFjdGl2aXR5LjwvZGl2PmRkAgMPFgIeCWlubmVyaHRtbAUESEIyNmRk2X8Uxt0cxwib+qw4pCGXFeZ8EpyNQrDYMa0RWO9ukTQ=" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="2C36B249" />
+    <div id="whitespace"></div>
+    <div style="text-align:center; font-size:x-large; font-family:Arial, Sans-Serif;">                                                           
+        <span id="lblActions"><font size="4"><div><table id="fixedTable" border=1 width="100%"><thead><tr><th style="text-align:center; width:20%;"><a href="BillActions.aspx?bill=HB26&year=2019&code=R&sortDesc=true" style="color:black;"><b>Date</b></a></th><th style="text-align:center; width:20%;"><b>Jrn Pg</b></th><th colspan="4"  style="text-align:center; width:60%;"><b>Activity Description</b></th></tr></thead><tbody></tbody></table></div><div><table id="actionTable" border=1 width="100%"><thead><tr><th  style="text-align:center; width:20%;"><a href="BillActions.aspx?bill=HB26&year=2019&code=R&sortDesc=true" style="color:black;"><b>Date</b></a></th><th style="text-align:center; width:20%;"><b>Jrn Pg</b></th><th colspan="4" style="text-align:center; width:60%;"><b>Activity Description</b></th></tr></thead><tr><td>12/03/2018</td><td></td><td class="billactions">Prefiled (H) </td></tr></table></div></br>The activity can be referenced in the House or Senate Journal. The JRN PG column indicates the H-House or S-Senate journal printed for that activity date and the page number for the activity.</div></font></span>                       
+    </div>
+    <div id="PrintFrame" style="position: fixed; top: 6px; right: 15px;z-index: 101;"><a href="javascript:window.print()">Print Actions&nbsp;<img src="graphics/print.gif"/></a></div>
+    <div id="lblBillNumber" style="position: absolute; top: 6px; left: 15px; z-index: 102; font-weight: bold;">HB26</div>
+    </form>
+</body>
+</html>

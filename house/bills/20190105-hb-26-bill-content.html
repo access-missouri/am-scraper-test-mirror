@@ -1,0 +1,331 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	Missouri House of Representatives
+</title>
+    <style>
+        
+        body {
+            background:white;
+            font-size:10pt;
+            font-family:'Century Gothic',Arial, Helvetica, sans-serif;
+        }
+        
+        .BillHeader {
+           	background: rgb(221, 221, 221) url('graphics/light_brushed_sm.png');
+        	font-weight:bold;
+        	font-size:24pt;
+        	border-bottom:1px solid gray;
+        	padding-left:5px;
+            width: 100%;
+        }
+        
+        .entry-title
+        {
+            width: 100%;
+            background-color: rgba(255, 204, 102, 0.3);
+            display: inline-block;   
+        }
+        
+        .BillDescription {
+            padding:10px;
+            font-style:italic;
+            border-bottom:1px solid gray;
+            width:97%;
+        }
+        
+        td, th
+        {
+            text-align:left;
+        }
+        
+        #BillDocuments
+        {
+            width: 220px;
+            max-width: 220px;
+            height: 890px;
+            float:right;
+            vertical-align:top;
+            font-size: 9pt;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            background-color: rgba(170, 190, 197, 0.5);
+            border-width: 1px;
+            border-style: inset;
+            border-color:White;
+        }
+
+        .DocHeaderRow
+        {
+            font-size: 10pt;
+        }
+        
+        #BillStuff
+        {
+            height: 382px;   
+            margin-right: 225px;
+            position: relative;
+        }
+        
+        #BillInfo
+        {
+            height: 332px;
+            display: inline-block;  
+            position:relative;
+            vertical-align:top;
+            width:100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        #BillFrameDiv
+        {
+            margin-right: 225px;
+        }
+        
+        #BillFrame
+        {
+            width: 100%;
+            height: 508px;
+            overflow:auto;  
+            vertical-align:top; 
+            border: 0 none;
+            border-top: 1px solid #C0C0C0;
+            border-right: 1px solid #C0C0C0;
+            border-bottom: 1px solid black;
+        }
+        
+        #TabButtons
+        {
+            position:absolute; 
+            height:20px; 
+            width: 100%; 
+            bottom: 23px; 
+        }
+        
+        .BillTabs
+        {
+            display: inline-block;
+            padding: 8px;
+            background-color: #D3D3D3;
+            border-bottom: 1px solid black;
+            border-right: 1px solid #C0C0C0;
+            color:Black;
+            width: 100px;
+            text-align:center;
+            text-decoration: none;
+            margin: 2px;
+        }
+        
+        #TabButtons a:hover
+        {
+            background-color: #ADABAB;   
+        }
+
+        .DocRow
+        {
+            width:100%;
+            display:block;
+            border-bottom: 2px solid white;
+            background-color: rgba(170, 190, 197, 0.4);
+        }
+
+        .DocHeaderRow
+        {
+            width:100%;
+            height: 24px;
+            font-weight: bold;
+            display:block;
+            border-bottom: 2px solid white;
+            background-color: rgba(92, 115, 115, 0.5) !important;
+            line-height: 24px;
+            padding-left: 10px;
+        }
+        
+        #DocRows
+        {
+            background-color: white;
+        }
+
+        #Header2
+        {
+            padding-bottom: 9px;
+            padding-left: 8px;
+            padding-top: 4px;
+            font-style: italic;
+        }
+        
+        .IconCell
+        {
+            width:10%;  
+            display: inline-block; 
+            text-align: center;
+            height: 24px;
+        }
+
+        .IconCell img
+        {
+            margin-top: 2px;
+        }
+        
+        .DocInfoCell
+        {
+            width: 88%;   
+            display: inline-block;
+            vertical-align: top;
+            padding-top: 5px;
+            height: 24px;
+            overflow:hidden;
+            white-space:nowrap;
+            text-overflow: ellipsis;
+            margin-top: 2px;
+        }
+        
+        .DocInfoCellRC
+        {
+            width: 82%;   
+            display: inline-block;
+            vertical-align: top;
+            padding-top: 5px;
+            height: 24px;
+            margin-left: 10px;
+        }
+
+        .textLR
+        {
+            display: inline-block;
+            width: 62px;
+            padding-right: 3px;
+            padding-left: 3px;
+            white-space:nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            margin-top: 2px;
+        }
+
+        .textType
+        {
+            display: inline-block;
+            width: 102px;
+            padding-left: 3px;
+            white-space:nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            margin-top: 2px;
+        }
+
+        .textSpon
+        {
+            display: inline-block;
+            white-space:nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            margin-top: 2px;
+            width: 48px;
+        }
+
+        .focusedButton
+        {
+            display: inline-block;
+            padding: 8px;
+            border-bottom: 1px solid black;
+            border-right: 1px solid #C0C0C0;
+            width: 100px;
+            text-align:center;
+            background-color: #385C8B;
+            color: white;
+            text-decoration: none;
+            margin: 2px;
+        }
+
+    </style>
+
+    <script>
+
+        //function expcolApprops() {
+        //    if (document.getElementById("Notes").style.display == "block")
+        //        document.getElementById("Notes").style.display = "none";
+        //    else
+        //        document.getElementById("Notes").style.display = "block";
+        //}
+
+        function ClearClasses() {
+            var children = document.getElementById('TabButtons').children;
+
+            for (var i = 0; i < children.length; i++) {
+                children[i].className = 'BillTabs';
+            }
+        }
+
+        function WriteToIframe() {
+            var iframe = window.frames['BFrame'];
+            var html = document.getElementById('hfIframeText').value;
+
+            iframe.document.open();
+            iframe.document.write(html);
+            iframe.document.close();
+        }
+
+    </script>
+</head>
+<body>
+    <form method="post" action="./BillContent.aspx?bill=HB26" id="form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTMxNDk0NDAwNA9kFgICAw9kFggCAQ8WAh4JaW5uZXJodG1sBboHPGRpdiBpZD0iRG9jUm93cyI+PGRpdiBjbGFzcz0iRG9jSGVhZGVyUm93Ij5CaWxsIFRleHQ8L2Rpdj48ZGl2IGNsYXNzPSJEb2NSb3ciIG9ubW91c2VvdmVyPSJ0aGlzLnN0eWxlLmJhY2tncm91bmRDb2xvciA9ICcjY2NjJzsgIiBvbm1vdXNlb3V0PSJ0aGlzLnN0eWxlLmJhY2tncm91bmRDb2xvciA9ICcjRUFEQ0JFJzsgIiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjogI0VBRENCRSAhaW1wb3J0YW50OyI+PGRpdiBjbGFzcz0iSWNvbkNlbGwiPjwvZGl2PjxkaXYgY2xhc3M9IkRvY0luZm9DZWxsIj48ZGl2IGNsYXNzPSJ0ZXh0TFIiPjAzMzBILjAySTwvZGl2PjxkaXYgY2xhc3M9InRleHRUeXBlIj48YSBocmVmPSIvYmlsbHRyYWNraW5nL2JpbGxzMTkxL2hscmJpbGxzcGRmLzAzMzBILjAySS5wZGYiIHRpdGxlPSJJbnRyb2R1Y2VkIiB0YXJnZXQ9InRvcCI+SW50cm9kdWNlZDwvYT48L2Rpdj48L2Rpdj48L2Rpdj48ZGl2IGNsYXNzPSJEb2NIZWFkZXJSb3ciPkJpbGwgU3VtbWFyeTwvZGl2PjxkaXYgY2xhc3M9IkRvY1JvdyIgb25tb3VzZW92ZXI9InRoaXMuc3R5bGUuYmFja2dyb3VuZENvbG9yID0gJyNjY2MnOyAiIG9ubW91c2VvdXQ9InRoaXMuc3R5bGUuYmFja2dyb3VuZENvbG9yID0gJ3JnYmEoMTcwLCAxOTAsIDE5NywgMC40KSc7ICIgPjxkaXYgY2xhc3M9Ikljb25DZWxsIj48aW1nIHNyYz0iZ3JhcGhpY3MvQmlsbFN1bS5wbmciIGFsdD0iQmlsbCBTdW1tYXJ5IiB0aXRsZT0iQmlsbCBTdW1tYXJ5Ij48L2Rpdj48ZGl2IGNsYXNzPSJEb2NJbmZvQ2VsbCI+PGRpdiBjbGFzcz0idGV4dExSIj5IQjAwMjZJPC9kaXY+PGRpdiBjbGFzcz0idGV4dFR5cGUiPjxhIGhyZWY9Ii9iaWxsdHJhY2tpbmcvYmlsbHMxOTEvc3VtcGRmL0hCMDAyNkkucGRmIiB0YXJnZXQ9InRvcCIgdGl0bGU9IkludHJvZHVjZWQiPkludHJvZHVjZWQ8L2E+PC9kaXY+PC9kaXY+PC9kaXY+PC9kaXY+ZAIDDxYCHgRUZXh0BckPPGRpdiBpZD0iSGVhZGVyMiI+MTAwdGggR2VuZXJhbCBBc3NlbWJseSwgMXN0IFJlZ3VsYXIgU2Vzc2lvbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj48ZGl2IGlkPSJCaWxsRGV0YWlscyI+CjxzcGFuIGNsYXNzPSJoc2xpY2UiPjxkaXYgY2xhc3M9IkJpbGxIZWFkZXIiPjxzcGFuIGNsYXNzPSJlbnRyeS10aXRsZSI+PGRpdiBzdHlsZT0iZGlzcGxheTppbmxpbmUtYmxvY2s7Ij5IQiAyNiZuYnNwOyZuYnNwOzwvZGl2PjxkaXYgc3R5bGUgPSAiZGlzcGxheTppbmxpbmUtYmxvY2s7IHBhZGRpbmctdG9wOjhweDsgcGFkZGluZy1ib3R0b206OHB4OyB0ZXh0LWFsaWduOmNlbnRlcjsgZm9udC1zaXplOiA4cHQ7IHRvcDogMjNweDsiPiA8ZGl2IHN0eWxlPSJ3aWR0aDo0MjBweDsgZGlzcGxheTppbmxpbmUtYmxvY2s7Ij48ZGl2IHN0eWxlID0gImRpc3BsYXk6dGFibGUtY2VsbDsgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7IHdpZHRoOjc4cHg7IHBhZGRpbmctdG9wOiA2cHg7IHBhZGRpbmctYm90dG9tOiA2cHg7IGJhY2tncm91bmQtY29sb3I6ICNGRkZGQ0M7IGJvcmRlci1yYWRpdXM6IDIwcHggMHB4IDBweCAyMHB4OyI+RmlsZWQ8L2RpdiA+PGRpdiBzdHlsZSA9ICJkaXNwbGF5OnRhYmxlLWNlbGw7IGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrOyB3aWR0aDo3OHB4OyBwYWRkaW5nLXRvcDogNnB4OyBwYWRkaW5nLWJvdHRvbTogNnB4OyBiYWNrZ3JvdW5kLWNvbG9yOiAjRENEQ0RDOyI+SW4gQ29tbWl0dGVlPC9kaXYgPjxkaXYgc3R5bGUgPSAiZGlzcGxheTp0YWJsZS1jZWxsOyBib3JkZXI6IDFweCBzb2xpZCBibGFjazsgd2lkdGg6ODBweDsgcGFkZGluZy10b3A6IDZweDsgcGFkZGluZy1ib3R0b206IDZweDsgYmFja2dyb3VuZC1jb2xvcjogI0RDRENEQzsiPkZsb29yIEFjdGlvbjwvZGl2PjxkaXYgc3R5bGUgPSAiZGlzcGxheTp0YWJsZS1jZWxsOyBib3JkZXI6IDFweCBzb2xpZCBibGFjazsgd2lkdGg6ODJweDsgcGFkZGluZy10b3A6IDZweDsgcGFkZGluZy1ib3R0b206IDZweDsgYmFja2dyb3VuZC1jb2xvcjogI0RDRENEQzsiPlNlbnQgdG8gU2VuYXRlPC9kaXYgPjxkaXYgc3R5bGUgPSAiZGlzcGxheTp0YWJsZS1jZWxsOyBib3JkZXI6IDFweCBzb2xpZCBibGFjazsgd2lkdGg6OTBweDsgcGFkZGluZy10b3A6IDZweDsgcGFkZGluZy1ib3R0b206IDZweDsgYmFja2dyb3VuZC1jb2xvcjogI0RDRENEQzsgYm9yZGVyLXJhZGl1czogMHB4IDIwcHggMjBweCAwcHg7Ij5TZW50IHRvIEdvdmVybm9yPC9kaXYgPjwvZGl2PjwvZGl2Pjwvc3Bhbj48L2Rpdj4KPGRpdiBjbGFzcz0iQmlsbERlc2NyaXB0aW9uIj5DaGFuZ2VzIHRoZSBsYXcgcmVnYXJkaW5nIHByaW1hcnkgZWxlY3Rpb25zPC9kaXY+CjxkaXYgaWQ9IkJpbGxKdW5rIiBzdHlsZT0iZGlzcGxheTppbmxpbmUtYmxvY2s7d2lkdGg6MTAwJTsiPjx0YWJsZT4KPHRyPgo8dGg+U3BvbnNvcjo8L3RoPgo8dGQ+PGEgaHJlZj0iTWVtYmVyRGV0YWlscy5hc3B4P2Rpc3RyaWN0PTAzMSZ5ZWFyPTIwMTkmY29kZT1SIiB0YXJnZXQ9InRvcCI+U3RhY3ksIERhbiAoMDMxKTwvYT48L3RkPgo8L3RyPgo8dHI+CjwvdHI+Cjx0cj4KPHRoPlByb3Bvc2VkIEVmZmVjdGl2ZSBEYXRlOjwvdGg+Cjx0ZD44LzI4LzIwMTk8L3RkPgo8L3RyPgo8dHI+Cjx0aD5MUiBOdW1iZXI6PC90aD4KPHRkPjAzMzBILjAySTwvdGQ+CjwvdHI+Cjx0cj4KPHRoPkxhc3QgQWN0aW9uOjwvdGg+Cjx0ZD4xMi8wMy8yMDE4IC0gUHJlZmlsZWQgKEgpPC90ZD4KPC90cj4KPHRyPgo8dGg+QmlsbCBTdHJpbmc6PC90aD4KPHRkPkhCIDI2PC90ZD4KPC90cj4KPHRyPgo8dGg+TmV4dCBIb3VzZSBIZWFyaW5nOjwvdGg+Cjx0ZD5IZWFyaW5nIG5vdCBzY2hlZHVsZWQ8L3RkPgo8L3RyPgo8dHI+Cjx0aD5DYWxlbmRhcjo8L3RoPgo8dGQ+QmlsbCBjdXJyZW50bHkgbm90IG9uIGEgSG91c2UgY2FsZW5kYXI8L3RkPgo8L3RyPgo8L3RhYmxlPjwvZGl2Pjwvc3Bhbj4KPC9kaXY+CmQCBw8WAh8BBagFPGRpdiBpZD0iVGFiQnV0dG9ucyI+PGEgaHJlZj0iQ29TcG9uc29ycy5hc3B4P2JpbGw9SEIyNiZ5ZWFyPTIwMTkmY29kZT1SIiAgb25DbGljaz0iQ2xlYXJDbGFzc2VzKCk7IHRoaXMuY2xhc3NOYW1lPSdmb2N1c2VkQnV0dG9uJyIgY2xhc3M9IkJpbGxUYWJzInRhcmdldD0iQkZyYW1lIj5Dby1TcG9uc29yczwvYT4mbmJzcDs8YSBocmVmPSJCaWxsQWN0aW9ucy5hc3B4P2JpbGw9SEIyNiZ5ZWFyPTIwMTkmY29kZT1SIiBvbkNsaWNrPSJDbGVhckNsYXNzZXMoKTsgdGhpcy5jbGFzc05hbWU9J2ZvY3VzZWRCdXR0b24nIiBjbGFzcz0iZm9jdXNlZEJ1dHRvbiJ0YXJnZXQ9IkJGcmFtZSI+QWN0aW9uczwvYT4mbmJzcDs8YSBocmVmPSJCaWxsSGVhcmluZ3MuYXNweD9CaWxsPUhCMjYmeWVhcj0yMDE5JmNvZGU9UiIgb25DbGljaz0iQ2xlYXJDbGFzc2VzKCk7IHRoaXMuY2xhc3NOYW1lPSdmb2N1c2VkQnV0dG9uJyIgY2xhc3M9IkJpbGxUYWJzIiAgdGFyZ2V0PSJCRnJhbWUiPkhlYXJpbmdzPC9hPiZuYnNwOzxhIGhyZWY9ImJpbGxmbG9vcmF1ZGlvaW5zZXQuYXNweD9iaWxsPUhCMjYmeWVhcj0yMDE5JmNvZGU9UiIgb25DbGljaz0iQ2xlYXJDbGFzc2VzKCk7IHRoaXMuY2xhc3NOYW1lPSdmb2N1c2VkQnV0dG9uJyIgY2xhc3M9IkJpbGxUYWJzInRhcmdldD0iQkZyYW1lIj5NZWRpYTwvYT48L2Rpdj5kAgkPFgIfAQWpATxpZnJhbWUgaWQ9IkJpbGxGcmFtZSIgbmFtZT0iQkZyYW1lIiBvbkxvYWQ9InRoaXMuY29udGVudFdpbmRvdy5zY3JvbGxUbygwLCA5OTk5OTkpOyIgc3JjPSJCaWxsQWN0aW9ucy5hc3B4P2JpbGw9SEIyNiZ5ZWFyPTIwMTkmY29kZT1SIj48ZGl2IGlkPSJ0ZXN0RElWIj48L2Rpdj48L2lmcmFtZT5kZCZytU3xC7lyWXwAJU9aAUwUM217kvvrNf3YoHPY4peN" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="97DD00DC" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAIhjQjcFSgr2Z92s9JMTt3kxkIicL7v5GvEdCDw/AivNnsbkYLnSf84mykrJ3N/bta+rH+daUVjR/1UbsWedYNi" />
+    <div style="width:100%">
+        <div id="BillDocuments"><div id="DocRows"><div class="DocHeaderRow">Bill Text</div><div class="DocRow" onmouseover="this.style.backgroundColor = '#ccc'; " onmouseout="this.style.backgroundColor = '#EADCBE'; " style="background-color: #EADCBE !important;"><div class="IconCell"></div><div class="DocInfoCell"><div class="textLR">0330H.02I</div><div class="textType"><a href="/billtracking/bills191/hlrbillspdf/0330H.02I.pdf" title="Introduced" target="top">Introduced</a></div></div></div><div class="DocHeaderRow">Bill Summary</div><div class="DocRow" onmouseover="this.style.backgroundColor = '#ccc'; " onmouseout="this.style.backgroundColor = 'rgba(170, 190, 197, 0.4)'; " ><div class="IconCell"><img src="graphics/BillSum.png" alt="Bill Summary" title="Bill Summary"></div><div class="DocInfoCell"><div class="textLR">HB0026I</div><div class="textType"><a href="/billtracking/bills191/sumpdf/HB0026I.pdf" target="top" title="Introduced">Introduced</a></div></div></div></div></div>
+        <div id="BillStuff">
+            <div id="BillInfo">
+                <div id="Header2">100th General Assembly, 1st Regular Session                               </div><div id="BillDetails">
+<span class="hslice"><div class="BillHeader"><span class="entry-title"><div style="display:inline-block;">HB 26&nbsp;&nbsp;</div><div style = "display:inline-block; padding-top:8px; padding-bottom:8px; text-align:center; font-size: 8pt; top: 23px;"> <div style="width:420px; display:inline-block;"><div style = "display:table-cell; border: 1px solid black; width:78px; padding-top: 6px; padding-bottom: 6px; background-color: #FFFFCC; border-radius: 20px 0px 0px 20px;">Filed</div ><div style = "display:table-cell; border: 1px solid black; width:78px; padding-top: 6px; padding-bottom: 6px; background-color: #DCDCDC;">In Committee</div ><div style = "display:table-cell; border: 1px solid black; width:80px; padding-top: 6px; padding-bottom: 6px; background-color: #DCDCDC;">Floor Action</div><div style = "display:table-cell; border: 1px solid black; width:82px; padding-top: 6px; padding-bottom: 6px; background-color: #DCDCDC;">Sent to Senate</div ><div style = "display:table-cell; border: 1px solid black; width:90px; padding-top: 6px; padding-bottom: 6px; background-color: #DCDCDC; border-radius: 0px 20px 20px 0px;">Sent to Governor</div ></div></div></span></div>
+<div class="BillDescription">Changes the law regarding primary elections</div>
+<div id="BillJunk" style="display:inline-block;width:100%;"><table>
+<tr>
+<th>Sponsor:</th>
+<td><a href="MemberDetails.aspx?district=031&year=2019&code=R" target="top">Stacy, Dan (031)</a></td>
+</tr>
+<tr>
+</tr>
+<tr>
+<th>Proposed Effective Date:</th>
+<td>8/28/2019</td>
+</tr>
+<tr>
+<th>LR Number:</th>
+<td>0330H.02I</td>
+</tr>
+<tr>
+<th>Last Action:</th>
+<td>12/03/2018 - Prefiled (H)</td>
+</tr>
+<tr>
+<th>Bill String:</th>
+<td>HB 26</td>
+</tr>
+<tr>
+<th>Next House Hearing:</th>
+<td>Hearing not scheduled</td>
+</tr>
+<tr>
+<th>Calendar:</th>
+<td>Bill currently not on a House calendar</td>
+</tr>
+</table></div></span>
+</div>
+
+                <input type="hidden" name="hfIframeText" id="hfIframeText" />
+            </div>
+            <div id="TabButtons"><a href="CoSponsors.aspx?bill=HB26&year=2019&code=R"  onClick="ClearClasses(); this.className='focusedButton'" class="BillTabs"target="BFrame">Co-Sponsors</a>&nbsp;<a href="BillActions.aspx?bill=HB26&year=2019&code=R" onClick="ClearClasses(); this.className='focusedButton'" class="focusedButton"target="BFrame">Actions</a>&nbsp;<a href="BillHearings.aspx?Bill=HB26&year=2019&code=R" onClick="ClearClasses(); this.className='focusedButton'" class="BillTabs"  target="BFrame">Hearings</a>&nbsp;<a href="billflooraudioinset.aspx?bill=HB26&year=2019&code=R" onClick="ClearClasses(); this.className='focusedButton'" class="BillTabs"target="BFrame">Media</a></div>
+        </div>
+        <div id="BillFrameDiv">
+            <iframe id="BillFrame" name="BFrame" onLoad="this.contentWindow.scrollTo(0, 999999);" src="BillActions.aspx?bill=HB26&year=2019&code=R"><div id="testDIV"></div></iframe>
+        </div>
+    </div>
+    </form>
+</body>
+</html>
